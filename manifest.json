@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Property Commute Analyzer",
+  "version": "1.0",
+  "description": "Displays commute times and nearby amenities on realestate.com.au listings.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://maps.googleapis.com/*",
+    "https://*.realestate.com.au/*"
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.realestate.com.au/*"],
+      "css": ["content.css"],
+      "js": ["content.js"]
+    }
+  ]
+}

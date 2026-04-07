@@ -1,0 +1,158 @@
+#pca-panel {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 320px;
+  background: #ffffff;
+  border: 1px solid #d2d5d7;
+  border-right: none;
+  border-radius: 12px 0 0 12px;
+  box-shadow: -8px 0 24px rgba(0,0,0,0.12);
+  z-index: 99999;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #333f48;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+#pca-panel.pca-collapsed {
+  transform: translateY(-50%) translateX(275px);
+}
+#pca-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: #e4002b;
+  cursor: pointer;
+  user-select: none;
+}
+#pca-header-left { display: flex; align-items: center; gap: 10px; }
+#pca-header .pca-logo { font-size: 1.2rem; filter: saturate(0) brightness(2); }
+#pca-header h3 { font-size: 0.95rem; font-weight: 700; color: #ffffff; margin: 0; letter-spacing: -0.01em; }
+#pca-toggle-btn {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: #ffffff;
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+#pca-toggle-btn:hover { background: rgba(255,255,255,0.3); }
+#pca-body { padding: 20px; max-height: 450px; overflow-y: auto; background: #f6f6f6; }
+#pca-address {
+  font-size: 0.8rem;
+  color: #697684;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #d2d5d7;
+  line-height: 1.5;
+}
+#pca-address strong { color: #333f48; font-weight: 600; }
+.pca-item {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  border: 1px solid #d2d5d7;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+.pca-item:last-child { margin-bottom: 0; }
+.pca-item-name {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #e4002b;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.pca-item-detail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pca-icon { font-size: 1.2rem; }
+.pca-duration { font-size: 1.4rem; font-weight: 800; color: #333f48; letter-spacing: -0.5px; }
+.pca-distance { font-size: 0.8rem; color: #697684; margin-left: auto; font-weight: 500; }
+.pca-error-item {
+  background: #fff5f5;
+  border-color: #feb2b2;
+  color: #c53030;
+  font-size: 0.85rem;
+}
+#pca-loading {
+  text-align: center;
+  padding: 30px 0;
+  color: #697684;
+  font-size: 0.9rem;
+}
+.pca-spinner {
+  width: 28px; height: 28px;
+  border: 3px solid #d2d5d7;
+  border-top-color: #e4002b;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  animation: pca-spin 0.8s linear infinite;
+}
+@keyframes pca-spin { to { transform: rotate(360deg); } }
+#pca-footer {
+  padding: 14px 20px;
+  background: #ffffff;
+  border-top: 1px solid #d2d5d7;
+}
+#pca-settings-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333f48;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+#pca-settings-link:hover { color: #e4002b; }
+
+.pca-mode-label {
+  font-size: 0.65rem;
+  color: #697684;
+  text-transform: none;
+  font-weight: 600;
+  margin-left: 6px;
+}
+.pca-route-pill {
+  margin-top: 10px;
+  background: #f6f6f6;
+  color: #333f48;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+  display: inline-block;
+  line-height: 1.4;
+  border: 1px solid #d2d5d7;
+}
+
+.pca-option-block {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid #f0f0f0;
+}
+.pca-option-block:first-of-type {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: none;
+}
+.pca-option-idx {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #697684;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}

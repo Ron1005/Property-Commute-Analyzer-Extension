@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Commute Analyzer Settings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">🏠</div>
+      <h1>Commute Analyzer</h1>
+      <p class="subtitle">Configure your settings to see commute times on listings</p>
+    </div>
+
+    <div class="card">
+      <h2>Google Maps API Key</h2>
+      <div class="form-group">
+        <label for="apiKey">API Key</label>
+        <input type="password" id="apiKey" placeholder="AIzaSy...">
+        <p class="help-text">Requires the <strong>Directions API</strong> and <strong>Places API</strong> to be enabled in your Google Cloud Console.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Points of Interest</h2>
+      <p class="section-desc">Add locations you want commute times for (e.g. Work, Gym, Family)</p>
+      <div id="pointsList"></div>
+      <button class="btn-secondary" id="addPointBtn">+ Add Location</button>
+    </div>
+
+    <button class="btn-primary" id="saveBtn">Save Settings</button>
+    <div id="status"></div>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>
