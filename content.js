@@ -61,6 +61,13 @@
       search: '\uD83D\uDD0D'
     };
 
+    function escapeHTML(str) {
+      if (!str) return '';
+      var div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
     panel.innerHTML =
       '<div id="pca-header">' +
         '<div id="pca-header-left">' +
@@ -70,7 +77,7 @@
         '<button id="pca-toggle-btn">' + ICONS.left + '</button>' +
       '</div>' +
       '<div id="pca-body">' +
-        '<div id="pca-address"><strong>From:</strong> ' + address + '</div>' +
+        '<div id="pca-address"><strong>From:</strong> ' + escapeHTML(address) + '</div>' +
         '<div id="pca-loading"><div class="pca-spinner"></div>Calculating options...</div>' +
         '<div id="pca-results"></div>' +
       '</div>' +
@@ -102,7 +109,7 @@
 
         if (!response || response.error) {
           var msg = response ? response.error : 'Check extension settings.';
-          resultsEl.innerHTML = '<div class="pca-item pca-error-item">' + ICONS.warn + ' ' + msg + '</div>';
+          resultsEl.innerHTML = '<div class="pca-item pca-error-item">' + ICONS.warn + ' ' + escapeHTML(msg) + '</div>';
           return;
         }
 
@@ -115,16 +122,16 @@
               if (r.isDynamic) {
                 var labelPrefix = (r.sortBy === 'distance') ? 'Nearest ' : 'Top ';
                 html += '<div class="pca-item">';
-                html += '  <div class="pca-item-name">' + ICONS.search + ' ' + labelPrefix + r.name + ' <span class="pca-mode-label">(' + r.mode + ')</span></div>';
+                html += '  <div class="pca-item-name">' + ICONS.search + ' ' + labelPrefix + escapeHTML(r.name) + ' <span class="pca-mode-label">(' + escapeHTML(r.mode) + ')</span></div>';
                 
                 r.options.forEach(function(opt, index) {
-                  var routeHtml = opt.route ? '<div class="pca-route-pill" style="margin-top:4px;">' + opt.route + '</div>' : '';
+                  var routeHtml = opt.route ? '<div class="pca-route-pill" style="margin-top:4px;">' + escapeHTML(opt.route) + '</div>' : '';
                   html += '  <div class="pca-option-block">';
-                  html += '    <div style="font-weight:700; color:#333f48; font-size:0.85rem; margin-bottom:4px;">' + opt.placeName + ' <span style="font-weight:normal; color:#d69e2e; font-size:0.75rem; margin-left:4px;">' + opt.rating + '</span></div>';
+                  html += '    <div style="font-weight:700; color:#333f48; font-size:0.85rem; margin-bottom:4px;">' + escapeHTML(opt.placeName) + ' <span style="font-weight:normal; color:#d69e2e; font-size:0.75rem; margin-left:4px;">' + escapeHTML(opt.rating) + '</span></div>';
                   html += '    <div class="pca-item-detail">';
                   html += '      <span class="pca-icon">' + modeIcon + '</span>';
-                  html += '      <span class="pca-duration">' + opt.duration + '</span>';
-                  html += '      <span class="pca-distance">' + opt.distance + '</span>';
+                  html += '      <span class="pca-duration">' + escapeHTML(opt.duration) + '</span>';
+                  html += '      <span class="pca-distance">' + escapeHTML(opt.distance) + '</span>';
                   html += '    </div>';
                   html +=      routeHtml;
                   html += '  </div>';
@@ -133,18 +140,18 @@
 
               } else {
                 html += '<div class="pca-item">';
-                html += '  <div class="pca-item-name">' + r.name + ' <span class="pca-mode-label">(' + r.mode + ')</span></div>';
+                html += '  <div class="pca-item-name">' + escapeHTML(r.name) + ' <span class="pca-mode-label">(' + escapeHTML(r.mode) + ')</span></div>';
                 
                 r.options.forEach(function(opt, index) {
                   var optionNum = r.options.length > 1 ? '<div class="pca-option-idx">Route ' + (index + 1) + '</div>' : '';
-                  var routeHtml = opt.route ? '<div class="pca-route-pill">' + opt.route + '</div>' : '';
+                  var routeHtml = opt.route ? '<div class="pca-route-pill">' + escapeHTML(opt.route) + '</div>' : '';
                   
                   html += '  <div class="pca-option-block">';
                   html +=      optionNum;
                   html += '    <div class="pca-item-detail">';
                   html += '      <span class="pca-icon">' + modeIcon + '</span>';
-                  html += '      <span class="pca-duration">' + opt.duration + '</span>';
-                  html += '      <span class="pca-distance">' + opt.distance + '</span>';
+                  html += '      <span class="pca-duration">' + escapeHTML(opt.duration) + '</span>';
+                  html += '      <span class="pca-distance">' + escapeHTML(opt.distance) + '</span>';
                   html += '    </div>';
                   html +=      routeHtml;
                   html += '  </div>';
@@ -152,7 +159,7 @@
                 html += '</div>';
               }
             } else {
-              html += '<div class="pca-item pca-error-item">' + ICONS.warn + ' ' + r.name + ': Could not fetch options</div>';
+              html += '<div class="pca-item pca-error-item">' + ICONS.warn + ' ' + escapeHTML(r.name) + ': Could not fetch options</div>';
             }
           });
           resultsEl.innerHTML = html;

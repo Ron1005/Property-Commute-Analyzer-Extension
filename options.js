@@ -20,41 +20,50 @@ function addPointRow(name, addressOrQuery, mode, type, sortBy) {
       <div>
         <label>Configuration Type</label>
         <select class="type-input">
-          <option value="fixed" ${type === 'fixed' ? 'selected' : ''}>📍 Fixed Address</option>
-          <option value="dynamic" ${type === 'dynamic' ? 'selected' : ''}>🔍 Find Best Nearby</option>
+          <option value="fixed">📍 Fixed Address</option>
+          <option value="dynamic">🔍 Find Best Nearby</option>
         </select>
       </div>
       <div>
         <label>Transport Mode</label>
         <select class="mode-input">
-          <option value="transit" ${mode === 'transit' ? 'selected' : ''}>Transit</option>
-          <option value="driving" ${mode === 'driving' ? 'selected' : ''}>Driving</option>
-          <option value="walking" ${mode === 'walking' ? 'selected' : ''}>Walking</option>
-          <option value="bicycling" ${mode === 'bicycling' ? 'selected' : ''}>Cycling</option>
+          <option value="transit">Transit</option>
+          <option value="driving">Driving</option>
+          <option value="walking">Walking</option>
+          <option value="bicycling">Cycling</option>
         </select>
       </div>
       <div>
         <label>Label</label>
-        <input type="text" class="name-input" placeholder="e.g. Work or Gym" value="${name}">
+        <input type="text" class="name-input" placeholder="e.g. Work or Gym">
       </div>
-      <div class="sort-by-container" style="display: ${type === 'dynamic' ? 'block' : 'none'};">
+      <div class="sort-by-container">
         <label>Sort Preference</label>
         <select class="sort-input">
-          <option value="rating" ${sortBy === 'rating' ? 'selected' : ''}>⭐ Top Rated</option>
-          <option value="distance" ${sortBy === 'distance' ? 'selected' : ''}>📍 Nearest</option>
+          <option value="rating">⭐ Top Rated</option>
+          <option value="distance">📍 Nearest</option>
         </select>
       </div>
       <div class="addr-container" style="grid-column: span 2;">
         <label class="addr-label">Destination Address</label>
-        <input type="text" class="addr-query-input" placeholder="Full exact address" value="${addressOrQuery}">
+        <input type="text" class="addr-query-input" placeholder="Full exact address">
       </div>
     </div>
   `;
+
+  // Safe attribution
+  row.querySelector(".type-input").value = type;
+  row.querySelector(".mode-input").value = mode;
+  row.querySelector(".name-input").value = name;
+  row.querySelector(".sort-input").value = sortBy;
+  row.querySelector(".addr-query-input").value = addressOrQuery;
+  
+  const sortByContainer = row.querySelector(".sort-by-container");
+  sortByContainer.style.display = (type === 'dynamic' ? 'block' : 'none');
   
   const typeSelect = row.querySelector(".type-input");
   const addrQueryInput = row.querySelector(".addr-query-input");
   const addrLabel = row.querySelector(".addr-label");
-  const sortByContainer = row.querySelector(".sort-by-container");
   
   typeSelect.addEventListener('change', (e) => {
     if (e.target.value === 'dynamic') {

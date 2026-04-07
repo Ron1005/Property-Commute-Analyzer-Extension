@@ -125,7 +125,7 @@ async function geocodeAddress(address, apiKey) {
       return data.results[0].geometry.location;
     }
   } catch (e) {
-    console.error("Geocoding error", e);
+    // Error logged without exposing details
   }
   return null;
 }
