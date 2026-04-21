@@ -56,9 +56,9 @@
       warn: '\u26A0\uFE0F',
       transit: '\uD83D\uDE87',
       driving: '\uD83D\uDE97',
-      walking: '\uD83D\uDEB6',
       bicycling: '\uD83D\uDEB2',
-      search: '\uD83D\uDD0D'
+      search: '\uD83D\uDD0D',
+      map: '\uD83D\uDDFA\uFE0F'
     };
 
     function escapeHTML(str) {
@@ -127,7 +127,10 @@
                 r.options.forEach(function(opt, index) {
                   var routeHtml = opt.route ? '<div class="pca-route-pill" style="margin-top:4px;">' + escapeHTML(opt.route) + '</div>' : '';
                   html += '  <div class="pca-option-block">';
-                  html += '    <div style="font-weight:700; color:#333f48; font-size:0.85rem; margin-bottom:4px;">' + escapeHTML(opt.placeName) + ' <span style="font-weight:normal; color:#d69e2e; font-size:0.75rem; margin-left:4px;">' + escapeHTML(opt.rating) + '</span></div>';
+                  html += '    <div style="font-weight:700; color:#333f48; font-size:0.85rem; margin-bottom:4px; display:flex; justify-content:space-between; align-items:center;">';
+                  html += '      <span>' + escapeHTML(opt.placeName) + ' <span style="font-weight:normal; color:#d69e2e; font-size:0.75rem; margin-left:4px;">' + escapeHTML(opt.rating) + '</span></span>';
+                  html += '      <a href="' + opt.mapsUrl + '" target="_blank" class="pca-maps-link" title="Open in Google Maps">' + ICONS.map + '</a>';
+                  html += '    </div>';
                   html += '    <div class="pca-item-detail">';
                   html += '      <span class="pca-icon">' + modeIcon + '</span>';
                   html += '      <span class="pca-duration">' + escapeHTML(opt.duration) + '</span>';
@@ -140,7 +143,10 @@
 
               } else {
                 html += '<div class="pca-item">';
-                html += '  <div class="pca-item-name">' + escapeHTML(r.name) + ' <span class="pca-mode-label">(' + escapeHTML(r.mode) + ')</span></div>';
+                html += '  <div class="pca-item-name" style="display:flex; justify-content:space-between; align-items:center;">';
+                html += '    <span>' + escapeHTML(r.name) + ' <span class="pca-mode-label">(' + escapeHTML(r.mode) + ')</span></span>';
+                html += '    <a href="' + r.mapsUrl + '" target="_blank" class="pca-maps-link" title="Open in Google Maps">' + ICONS.map + ' Open Maps</a>';
+                html += '  </div>';
                 
                 r.options.forEach(function(opt, index) {
                   var optionNum = r.options.length > 1 ? '<div class="pca-option-idx">Route ' + (index + 1) + '</div>' : '';

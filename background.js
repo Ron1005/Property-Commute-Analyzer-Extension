@@ -36,7 +36,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             
             if (result.status === "OK" && result.routes.length > 0) {
               const options = parseRoutes(result.routes, mode);
-              results.push({ name: point.name, mode: mode, isDynamic: false, options: options, ok: true });
+              const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=${mode}`;
+              results.push({ name: point.name, mode: mode, isDynamic: false, options: options, ok: true, mapsUrl });
             } else {
               results.push({ name: point.name, ok: false });
             }
@@ -86,7 +87,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                       rating: place.rating ? `${place.rating}` + String.fromCodePoint(0x2B50) : "No rating",
                       duration: parsed[0].duration,
                       distance: parsed[0].distance,
-                      route: parsed[0].route
+                      route: parsed[0].route,
+                      mapsUrl: `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${encodeURIComponent(destLatlng)}&travelmode=${mode}`
                     });
                   }
                 }
@@ -158,12 +160,14 @@ function parseRoutes(routesArray, mode) {
           transitStepsFound = true;
           const line = step.transit_details.line;
           const shortName = line.short_name || line.name;
-          const type = step.transit_details.vehicle ? step.transit_details.vehicle.type : "TRANSIT";
-          let vehicleStr = type;
-          if (type === "BUS") vehicleStr = "Bus";
-          else if (type === "TRAM") vehicleStr = "Tram";
-          else if (type === "HEAVY_RAIL" || type === "COMMUTER_TRAIN" || type === "SUBWAY") vehicleStr = "Train";
-          else if (type === "FERRY") vehicleStr = "Ferry";
+          const type = line.vehicle ? line.vehicle.type.toUpperCase() : "";
+          const typeMap = {
+            'BUS': 'Bus', 'INTERCITY_BUS': 'Bus', 'TROLLEYBUS': 'Bus',
+            'TRAM': 'Tram', 'LIGHT_RAIL': 'Tram',
+            'HEAVY_RAIL': 'Train', 'COMMUTER_TRAIN': 'Train', 'SUBWAY': 'Train', 'METRO': 'Train', 'RAIL': 'Train',
+            'FERRY': 'Ferry'
+          };
+          const vehicleStr = typeMap[type] || "Transit";
           transitSteps.push(`${vehicleStr} ${shortName}`);
         }
       }

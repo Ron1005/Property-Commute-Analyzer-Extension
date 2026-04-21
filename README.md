@@ -8,7 +8,8 @@ A powerful, brand-aligned Chrome extension for **realestate.com.au** that automa
 
 - **Native REA Integration**: Designed with the signature Red, Black, and White palette of realestate.com.au for a seamless user experience.
 - **Multi-Modal Commutes**: Calculate travel times for **Transit**, **Driving**, **Walking**, and **Cycling**.
-- **Detailed Transit Routes**: Provides step-by-step instructions for public transport (e.g., "Bus 200 → Train T1").
+- **Enhanced Transit Logic**: Specifically identifies and labels **Trams**, **Buses**, **Trains**, and **Ferries** (e.g., "Tram 75 → Bus 234").
+- **Deep Maps Integration**: One-click "Open Maps" feature to view pre-filled directions directly on Google Maps for any calculated route.
 - **Dynamic Amenity Finder**: Automatically finds and calculates travel times to the nearest/top-rated schools, gyms, supermarkets, or any custom query.
 - **Smart Sorting**: Choose to sort nearby search results by **Star Rating** or **Proximity**.
 - **Privacy First**: All your locations and API keys are stored locally in your browser.

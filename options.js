@@ -18,7 +18,7 @@ function addPointRow(name, addressOrQuery, mode, type, sortBy) {
     </div>
     <div class="point-grid">
       <div>
-        <label>Configuration Type</label>
+        <label>Search Type</label>
         <select class="type-input">
           <option value="fixed">📍 Fixed Address</option>
           <option value="dynamic">🔍 Find Best Nearby</option>

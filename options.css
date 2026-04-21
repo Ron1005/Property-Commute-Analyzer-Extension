@@ -36,7 +36,7 @@ h1 { font-size: 1.8rem; font-weight: 800; color: var(--text); letter-spacing: -0
 .card h2 { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 18px; }
 .section-desc { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px; }
 
-label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; }
+label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; white-space: nowrap; }
 input[type="text"], input[type="password"], select {
   width: 100%;
   background: #ffffff;
